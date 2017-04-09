@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FileUtils.Console
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ConsoleManager console = new ConsoleManager();
+
+            console.Init();
+            console.SearchFromLoadedAssemblies();
+
+            console.Run();
+        }
+    }
+}
