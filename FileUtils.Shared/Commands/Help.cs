@@ -8,9 +8,6 @@ namespace FileUtils.Commands
 {
     public class HelpCmd : ConsoleCommand
     {
-
-       
-
         private string command = "help";
         private string[] parameters = new string[]
             {
@@ -19,7 +16,7 @@ namespace FileUtils.Commands
         public override string Command { get { return command; } }
         public override string Help
         {
-            get { return "Example usage\nhelp commandName"; }
+            get { return "Example usage:\n  help commandName"; }
         }
         public override string[] Parameters { get { return parameters; } }
 
@@ -33,7 +30,8 @@ namespace FileUtils.Commands
         {
             if (args.Length == 1)
             {
-                return CommandFeedback.WrongNumberOfArguments;
+                ConsoleU.WriteLine(Help, Palette.Feedback);
+                return CommandFeedback.Success;
             }
 
             string target = args[1];
@@ -41,6 +39,10 @@ namespace FileUtils.Commands
             if (cmd != null)
             {
                 ConsoleU.WriteLine(cmd.Help, Palette.Help);
+            }
+            else
+            {
+                ConsoleU.WriteLine("Unknown command", Palette.Error);
             }
 
             return CommandFeedback.Success;

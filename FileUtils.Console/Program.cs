@@ -15,7 +15,14 @@ namespace FileUtils.Console
             console.Init();
             console.SearchFromLoadedAssemblies();
 
-            console.Run();
+            if (args.Length > 0)
+            {
+                console.ExecuteCommand(args);
+            }
+            else
+            {
+                console.Run();
+            }
         }
     }
 }

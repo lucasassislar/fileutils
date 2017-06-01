@@ -11,9 +11,16 @@ namespace FileUtils
     public class ConsoleManager
     {
         public Dictionary<string, ConsoleCommand> commands;
+        private bool silentMode;
+
+        public void SetSilentMode(bool value)
+        {
+            silentMode = value;
+        }
 
         public void Init()
         {
+            ConsoleU.WriteLine("DistroLucas's FileUtils v" + FileUtilsGlobals.DisplayVersion.ToString("F2", CultureInfo.InvariantCulture), ConsoleColor.White);
             commands = new Dictionary<string, ConsoleCommand>();
         }
 
@@ -21,7 +28,8 @@ namespace FileUtils
         {
             Type consoleType = typeof(ConsoleCommand);
 
-            Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            //Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            Assembly[] assemblies = new Assembly[] { Assembly.GetExecutingAssembly() };
             for (int i = 0; i < assemblies.Length; i++)
             {
                 Assembly assembly = assemblies[i];
@@ -39,51 +47,65 @@ namespace FileUtils
             }
         }
 
-        public bool InputYesNo()
+        public bool InputYesNo(bool silent = true)
         {
             ConsoleU.WriteLine("Yes/No", Palette.Question);
-            string yesno = ConsoleU.ReadLine().ToLower();
+            if (silentMode)
+            {
+                // still shows up that we were asking the user a question
+                ConsoleU.WriteLine(silent ? "Yes" : "No", Palette.Question);
+                return silent;
+            }
 
+            string yesno = ConsoleU.ReadLine().ToLower();
             return yesno.StartsWith("y");
+        }
+
+        public void ExecuteCommand(string line)
+        {
+            if (string.IsNullOrEmpty(line))
+            {
+                return;
+            }
+           
+            string[] sep = line.Split(' ');
+            ExecuteCommand(sep);
+        }
+
+        public void ExecuteCommand(string[] sep)
+        {
+            if (sep.Length == 0)
+            {
+                return;
+            }
+
+            string first = sep[0];
+            ConsoleCommand cmd;
+            if (!commands.TryGetValue(first, out cmd))
+            {
+                ConsoleU.WriteLine("Unknown command", Palette.Error);
+                return;
+            }
+
+            CommandFeedback feedback = cmd.Execute(sep);
+            if (feedback != CommandFeedback.Success)
+            {
+                ConsoleU.WriteLine(feedback.ToString(), Palette.Error);
+            }
         }
 
         public void Run()
         {
-            ConsoleU.WriteLine("DistroLucas's FileUtils v" + FileUtilsGlobals.DisplayVersion.ToString("F2", CultureInfo.InvariantCulture), ConsoleColor.White);
-
             for (;;)
             {
                 string line = ConsoleU.ReadLine();
-
-                if (string.IsNullOrEmpty(line))
-                {
-                    continue;
-                }
-
-                if (line == "exit")
-                {
-                    break;
-                }
-                string[] sep = line.Split(' ');
-                if (sep.Length == 0)
-                {
-                    continue;
-                }
-
-                string first = sep[0];
-                ConsoleCommand cmd;
-                if (!commands.TryGetValue(first, out cmd))
-                {
-                    ConsoleU.WriteLine("Unknown command", Palette.Error);
-                    continue;
-                }
-
-                CommandFeedback feedback = cmd.Execute(sep);
-                if (feedback != CommandFeedback.Success)
-                {
-                    ConsoleU.WriteLine(feedback.ToString(), Palette.Error);
-                }
+                ExecuteCommand(line);
             }
+        }
+
+        public void ProcessCommand(string command)
+        {
+
         }
 
         public ConsoleCommand GetCommand(string cmd)
