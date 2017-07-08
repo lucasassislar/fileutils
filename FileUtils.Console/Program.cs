@@ -8,6 +8,7 @@ namespace FileUtils.Console
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
             ConsoleManager console = new ConsoleManager();
