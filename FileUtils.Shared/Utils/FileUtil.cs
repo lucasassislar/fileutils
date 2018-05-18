@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace FileUtils
 {
-    public enum CommandFeedback
+    public static class FileUtil
     {
-        Success, WrongNumberOfArguments, 
-        Error
     }
 }
