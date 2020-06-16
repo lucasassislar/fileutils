@@ -36,38 +36,45 @@ namespace FileUtils.Commands {
             }
 
             string strDestiny = args[2];
-            string strFilter = args[3];
+
+            List<string> filters = new List<string>();
+            for (int i = 3; i < args.Length; i++) {
+                filters.Add(args[i]);
+            }
 
             DirectoryInfo dirInfo = new DirectoryInfo(strFolder);
-            RecursiveFolder(dirInfo, dirInfo, strDestiny, strFilter);
+            RecursiveFolder(dirInfo, dirInfo, strDestiny, filters);
 
             return CommandFeedback.Success;
         }
 
         private void RecursiveFolder(DirectoryInfo baseDir, DirectoryInfo dirInfo, 
-            string strDestiny, string strFilter) {
-            FileInfo[] arrFiles = dirInfo.GetFiles(strFilter);
-            for (int i = 0; i < arrFiles.Length; i++){
-                FileInfo file = arrFiles[i];
+            string strDestiny, List<string> filters) {
 
-                if (file.FullName.Contains(strDestiny)) {
-                    continue;
+            for (int x = 0; x < filters.Count; x++) {
+                FileInfo[] arrFiles = dirInfo.GetFiles(filters[x]);
+                for (int i = 0; i < arrFiles.Length; i++) {
+                    FileInfo file = arrFiles[i];
+
+                    if (file.FullName.Contains(strDestiny)) {
+                        continue;
+                    }
+
+                    string relPath = file.FullName.Replace(baseDir.FullName, "");
+                    relPath = relPath.Remove(0, 1);
+
+                    string fullPath = Path.Combine(strDestiny, relPath);
+                    string strFullPath = Path.GetDirectoryName(fullPath);
+                    Directory.CreateDirectory(strFullPath);
+
+                    file.MoveTo(fullPath);
+                    Console.WriteLine(fullPath);
                 }
-
-                string relPath = file.FullName.Replace(baseDir.FullName, "");
-                relPath = relPath.Remove(0, 1);
-
-                string fullPath = Path.Combine(strDestiny, relPath);
-                string strFullPath = Path.GetDirectoryName(fullPath);
-                Directory.CreateDirectory(strFullPath);
-
-                file.MoveTo(fullPath);
-                Console.WriteLine(fullPath);
-            }            
+            }
 
             DirectoryInfo[] arrDirs = dirInfo.GetDirectories();
             for (int i = 0; i < arrDirs.Length; i++) {
-                RecursiveFolder(baseDir, arrDirs[i], strDestiny, strFilter);
+                RecursiveFolder(baseDir, arrDirs[i], strDestiny, filters);
             }
         }
     }
