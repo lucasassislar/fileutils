@@ -6,14 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileUtils.Commands
-{
-    public class ModVolume : ConsoleCommand
-    {
+namespace FileUtils.Commands {
+    public class ModVolume : ConsoleCommand {
         public override string Command { get { return command; } }
 
-        public override string Help
-        {
+        public override string Help {
             get { return "Modifies the volume of a file.\nFormat modvolume file 1.2\nfor 120% volume"; }
         }
 
@@ -26,22 +23,18 @@ namespace FileUtils.Commands
         public override string[] Parameters { get { return parameters; } }
 
         public ModVolume(ConsoleManager manager)
-            : base(manager)
-        {
+            : base(manager) {
 
         }
 
-        public override CommandFeedback Execute(string[] args)
-        {
-            if (args.Length != 3)
-            {
+        public override CommandFeedback Execute(string[] args) {
+            if (args.Length != 3) {
                 return CommandFeedback.WrongNumberOfArguments;
             }
 
             string target = args[1];
             string volume = args[2];
-            if (!File.Exists(target))
-            {
+            if (!File.Exists(target)) {
                 return CommandFeedback.Error;
             }
 
@@ -63,49 +56,37 @@ namespace FileUtils.Commands
             CmdUtil.ExecuteCommand("", out exitCode, startArgs);
 
             bool makeBackup = false;
-            if (File.Exists(target))
-            {
-                if (!makeBackup)
-                {
+            if (File.Exists(target)) {
+                if (!makeBackup) {
                     File.Delete(sourceFile);
                 }
                 ConsoleU.WriteLine($"Okay", Palette.Success);
-            }
-            else
-            {
+            } else {
                 ConsoleU.WriteLine($"Failed", Palette.Error);
             }
 
             return CommandFeedback.Success;
         }
 
-        public void proc_OutputDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(e.Data))
-            {
+        public void proc_OutputDataReceived(object sender, DataReceivedEventArgs e) {
+            if (string.IsNullOrEmpty(e.Data)) {
                 return;
             }
             Console.WriteLine($"Redirected output: {e.Data}");
         }
 
-        public static bool IsDirectoryEmpty(string path)
-        {
+        public static bool IsDirectoryEmpty(string path) {
             return !Directory.EnumerateFileSystemEntries(path).Any();
         }
 
-        private static void RecursiveSearch(DirectoryInfo parent, List<string> folders)
-        {
+        private static void RecursiveSearch(DirectoryInfo parent, List<string> folders) {
             DirectoryInfo[] dirs = parent.GetDirectories();
-            for (int i = 0; i < dirs.Length; i++)
-            {
+            for (int i = 0; i < dirs.Length; i++) {
                 DirectoryInfo dir = dirs[i];
 
-                if (IsDirectoryEmpty(dir.FullName))
-                {
+                if (IsDirectoryEmpty(dir.FullName)) {
                     folders.Add(dir.FullName);
-                }
-                else
-                {
+                } else {
                     RecursiveSearch(dir, folders);
                 }
             }

@@ -4,26 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileUtils.Console
-{
-    class Program
-    {
+namespace FileUtils.Console {
+    class Program {
         [STAThread]
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             ConsoleManager console = new ConsoleManager();
 
             console.Init();
             console.SearchFromLoadedAssemblies();
 
-            if (args.Length > 0)
-            {
+            if (args.Length > 0) {
                 console.ExecuteCommand(args);
-            }
-            else
-            {
+            } else {
                 console.Run();
             }
+
+            System.Console.ReadLine();
         }
     }
 }

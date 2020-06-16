@@ -6,40 +6,32 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileUtils
-{
-    public class ConsoleManager
-    {
+namespace FileUtils {
+    public class ConsoleManager {
         public Dictionary<string, ConsoleCommand> commands;
         private bool silentMode;
 
-        public void SetSilentMode(bool value)
-        {
+        public void SetSilentMode(bool value) {
             silentMode = value;
         }
 
-        public void Init()
-        {
+        public void Init() {
             ConsoleU.WriteLine("DistroLucas's FileUtils v" + FileUtilsGlobals.DisplayVersion.ToString("F2", CultureInfo.InvariantCulture), ConsoleColor.White);
             commands = new Dictionary<string, ConsoleCommand>();
         }
 
-        public void SearchFromLoadedAssemblies()
-        {
+        public void SearchFromLoadedAssemblies() {
             Type consoleType = typeof(ConsoleCommand);
 
             //Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
             Assembly[] assemblies = new Assembly[] { Assembly.GetExecutingAssembly() };
-            for (int i = 0; i < assemblies.Length; i++)
-            {
+            for (int i = 0; i < assemblies.Length; i++) {
                 Assembly assembly = assemblies[i];
                 Type[] types = assembly.GetTypes();
-                for (int j = 0; j < types.Length; j++)
-                {
+                for (int j = 0; j < types.Length; j++) {
                     Type t = types[j];
 
-                    if (t.IsSubclassOf(consoleType))
-                    {
+                    if (t.IsSubclassOf(consoleType)) {
                         ConsoleCommand cmd = (ConsoleCommand)Activator.CreateInstance(t, this);
                         commands.Add(cmd.Command, cmd);
                     }
@@ -47,11 +39,9 @@ namespace FileUtils
             }
         }
 
-        public bool InputYesNo(bool silent = true)
-        {
+        public bool InputYesNo(bool silent = true) {
             ConsoleU.WriteLine("Yes/No", Palette.Question);
-            if (silentMode)
-            {
+            if (silentMode) {
                 // still shows up that we were asking the user a question
                 ConsoleU.WriteLine(silent ? "Yes" : "No", Palette.Question);
                 return silent;
@@ -61,55 +51,46 @@ namespace FileUtils
             return yesno.StartsWith("y");
         }
 
-        public void ExecuteCommand(string line)
-        {
-            if (string.IsNullOrEmpty(line))
-            {
+        public void ExecuteCommand(string line) {
+            if (string.IsNullOrEmpty(line)) {
                 return;
             }
-           
+
             string[] sep = line.Split(' ');
             ExecuteCommand(sep);
         }
 
-        public void ExecuteCommand(string[] sep)
-        {
-            if (sep.Length == 0)
-            {
+        public void ExecuteCommand(string[] sep) {
+            if (sep.Length == 0) {
                 return;
             }
 
             string first = sep[0];
             ConsoleCommand cmd;
-            if (!commands.TryGetValue(first, out cmd))
-            {
+            if (!commands.TryGetValue(first, out cmd)) {
                 ConsoleU.WriteLine("Unknown command", Palette.Error);
                 return;
             }
 
             CommandFeedback feedback = cmd.Execute(sep);
-            if (feedback != CommandFeedback.Success)
-            {
+            if (feedback != CommandFeedback.Success) {
                 ConsoleU.WriteLine(feedback.ToString(), Palette.Error);
             }
         }
 
-        public void Run()
-        {
-            for (;;)
+        public void Run() {
+            for (; ; )
             {
                 string line = ConsoleU.ReadLine();
                 ExecuteCommand(line);
             }
         }
 
-        public void ProcessCommand(string command)
-        {
+        public void ProcessCommand(string command) {
 
         }
 
-        public ConsoleCommand GetCommand(string cmd)
-        {
+        public ConsoleCommand GetCommand(string cmd) {
             ConsoleCommand command;
             commands.TryGetValue(cmd, out command);
             return command;

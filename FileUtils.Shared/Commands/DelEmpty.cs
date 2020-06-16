@@ -5,14 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileUtils.Commands
-{
-    public class DeleteEmptyFolders : ConsoleCommand
-    {
+namespace FileUtils.Commands {
+    public class DeleteEmptyFolders : ConsoleCommand {
         public override string Command { get { return command; } }
 
-        public override string Help
-        {
+        public override string Help {
             get { return "Deletes folders that have nothing inside"; }
         }
 
@@ -25,21 +22,17 @@ namespace FileUtils.Commands
         public override string[] Parameters { get { return parameters; } }
 
         public DeleteEmptyFolders(ConsoleManager manager)
-            : base(manager)
-        {
+            : base(manager) {
 
         }
 
-        public override CommandFeedback Execute(string[] args)
-        {
-            if (args.Length == 1)
-            {
+        public override CommandFeedback Execute(string[] args) {
+            if (args.Length == 1) {
                 return CommandFeedback.WrongNumberOfArguments;
             }
 
             string target = args[1];
-            if (Directory.Exists(target))
-            {
+            if (Directory.Exists(target)) {
                 ConsoleU.WriteLine("Searching directory...", Palette.Wait);
 
                 // target is a directory
@@ -47,8 +40,7 @@ namespace FileUtils.Commands
                 List<string> dirs = new List<string>();
                 RecursiveSearch(dir, dirs);
 
-                if (dirs.Count== 0)
-                {
+                if (dirs.Count == 0) {
                     ConsoleU.WriteLine($"Nothing to delete", Palette.Feedback);
                     return CommandFeedback.Success;
                 }
@@ -56,18 +48,13 @@ namespace FileUtils.Commands
 
                 int deleted = 0;
                 int failed = 0;
-                if (consoleManager.InputYesNo())
-                {
-                    for (int i = 0; i < dirs.Count; i++)
-                    {
+                if (consoleManager.InputYesNo()) {
+                    for (int i = 0; i < dirs.Count; i++) {
                         string directory = dirs[i];
-                        try
-                        {
+                        try {
                             Directory.Delete(directory);
                             deleted++;
-                        }
-                        catch
-                        {
+                        } catch {
                             ConsoleU.WriteLine($"Failed deleting { directory } ", Palette.Error);
                             failed++;
                         }
@@ -76,9 +63,7 @@ namespace FileUtils.Commands
 
                 ConsoleU.WriteLine($"Deleted { deleted } files", Palette.Success);
                 ConsoleU.WriteLine($"Failed to delete { failed } files", failed == 0 ? Palette.Success : Palette.Error);
-            }
-            else
-            {
+            } else {
                 // target is a file/doesnt exist
             }
 
@@ -86,24 +71,18 @@ namespace FileUtils.Commands
             return CommandFeedback.Success;
         }
 
-        public static bool IsDirectoryEmpty(string path)
-        {
+        public static bool IsDirectoryEmpty(string path) {
             return !Directory.EnumerateFileSystemEntries(path).Any();
         }
 
-        private static void RecursiveSearch(DirectoryInfo parent, List<string> folders)
-        {
+        private static void RecursiveSearch(DirectoryInfo parent, List<string> folders) {
             DirectoryInfo[] dirs = parent.GetDirectories();
-            for (int i = 0; i < dirs.Length; i++)
-            {
+            for (int i = 0; i < dirs.Length; i++) {
                 DirectoryInfo dir = dirs[i];
 
-                if (IsDirectoryEmpty(dir.FullName))
-                {
+                if (IsDirectoryEmpty(dir.FullName)) {
                     folders.Add(dir.FullName);
-                }
-                else
-                {
+                } else {
                     RecursiveSearch(dir, folders);
                 }
             }

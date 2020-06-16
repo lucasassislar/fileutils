@@ -14,7 +14,8 @@ namespace FileUtils.Commands
 
         public override string Help
         {
-            get { return "Writes text to a a text file header"; }
+            get { return $"Writes text to a a text file header\n" +
+                    $"Usage: fixspotifym4a [filepath]" ; }
         }
 
         private string command = "fixspotifym4a";
@@ -39,8 +40,15 @@ namespace FileUtils.Commands
             }
 
             string target = args[1];
+            if (!Path.IsPathRooted(target)) {
+                // relative path
+                string currentDir = Environment.CurrentDirectory;
+                target = Path.Combine(currentDir, target);
+            }
+
             if (!File.Exists(target))
             {
+                Console.WriteLine($"File not found: {target}");
                 return CommandFeedback.Error;
             }
 
@@ -66,7 +74,8 @@ namespace FileUtils.Commands
             }
             else
             {
-                ConsoleU.WriteLine($"Failed", Palette.Error);
+                ConsoleU.WriteLine($"FFMPEG failed with code {exitCode}", Palette.Error);
+                return CommandFeedback.Error;
             }
 
             return CommandFeedback.Success;

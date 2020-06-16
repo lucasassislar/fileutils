@@ -1,0 +1,74 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace FileUtils.Commands {
+    public class MoveFiles : ConsoleCommand {
+        public override string Command { get { return command; } }
+
+        public override string Help {
+            get { return "Move files"; }
+        }
+
+        private string command = "movefiles";
+        private string[] parameters = new string[]
+            {
+
+            };
+
+        public override string[] Parameters { get { return parameters; } }
+
+        public MoveFiles(ConsoleManager manager)
+            : base(manager) {
+        }
+
+        public override CommandFeedback Execute(string[] args) {
+            string strFolder = Environment.CurrentDirectory;
+            if (args.Length > 1) {
+                strFolder = args[1];
+            }
+
+            string strDestiny = args[2];
+            string strFilter = args[3];
+
+            DirectoryInfo dirInfo = new DirectoryInfo(strFolder);
+            RecursiveFolder(dirInfo, dirInfo, strDestiny, strFilter);
+
+            return CommandFeedback.Success;
+        }
+
+        private void RecursiveFolder(DirectoryInfo baseDir, DirectoryInfo dirInfo, 
+            string strDestiny, string strFilter) {
+            FileInfo[] arrFiles = dirInfo.GetFiles(strFilter);
+            for (int i = 0; i < arrFiles.Length; i++){
+                FileInfo file = arrFiles[i];
+
+                if (file.FullName.Contains(strDestiny)) {
+                    continue;
+                }
+
+                string relPath = file.FullName.Replace(baseDir.FullName, "");
+                relPath = relPath.Remove(0, 1);
+
+                string fullPath = Path.Combine(strDestiny, relPath);
+                string strFullPath = Path.GetDirectoryName(fullPath);
+                Directory.CreateDirectory(strFullPath);
+
+                file.MoveTo(fullPath);
+                Console.WriteLine(fullPath);
+            }            
+
+            DirectoryInfo[] arrDirs = dirInfo.GetDirectories();
+            for (int i = 0; i < arrDirs.Length; i++) {
+                RecursiveFolder(baseDir, arrDirs[i], strDestiny, strFilter);
+            }
+        }
+    }
+}

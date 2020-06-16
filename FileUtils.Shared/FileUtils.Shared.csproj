@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\nucleusdotnet\Nucleus.Gaming\Nucleus.Gaming\bin\Release\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NucleusDotNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\nucleusdotnet\Nucleus.Gaming\Nucleus.Gaming\bin\Release\NucleusDotNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
@@ -44,12 +52,16 @@
     <Compile Include="CommandFeedback.cs" />
     <Compile Include="Commands\AddToTxtBottom.cs" />
     <Compile Include="Commands\AddToTxtHeader.cs" />
+    <Compile Include="Commands\ConvertAllToMp3.cs" />
     <Compile Include="Commands\CutAudioFile.cs" />
     <Compile Include="Commands\DelEmpty.cs" />
     <Compile Include="Commands\FixSpotifyM4A.cs" />
     <Compile Include="Commands\Help.cs" />
+    <Compile Include="Commands\JoinTXTs.cs" />
     <Compile Include="Commands\ListFiles.cs" />
     <Compile Include="Commands\ModVolume.cs" />
+    <Compile Include="Commands\MoveFiles.cs" />
+    <Compile Include="Commands\WebServer.cs" />
     <Compile Include="ConsoleCommand.cs" />
     <Compile Include="ConsoleManager.cs" />
     <Compile Include="FileUtilsGlobals.cs" />
