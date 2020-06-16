@@ -1,0 +1,3 @@
+[submodule "ThirdParty/nucleusdotnet"]
+	path = ThirdParty/nucleusdotnet
+	url = https://github.com/lucasassislar/nucleusdotnet
