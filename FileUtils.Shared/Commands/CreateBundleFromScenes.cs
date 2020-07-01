@@ -50,6 +50,7 @@ namespace FileUtils.Commands {
             sourceFiles = new List<FileInfo>();
             guidsToAdd = new List<string>();
             sceneFiles = new List<string>();
+            prefabFiles = new List<string>();
             filesByGuid = new Dictionary<string, FileInfo>();
 
             for (int i = 3; i < args.Length; i++) {
