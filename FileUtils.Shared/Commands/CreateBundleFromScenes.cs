@@ -147,6 +147,20 @@ namespace FileUtils.Commands {
                                 string guid = line.Substring(numGuidIndex + guidStr.Length, 32);
                                 if (!guidsToAdd.Contains(guid)) {
                                     guidsToAdd.Add(guid);
+
+                                    FileInfo fileInfo;
+                                    if (!filesByGuid.TryGetValue(guid, out fileInfo)) {
+                                        continue;
+                                    }
+
+                                    string strNoExtension = Path.GetFileNameWithoutExtension(fileInfo.Name);
+                                    string strExtension = Path.GetExtension(strNoExtension).ToLower();
+                                    if (strExtension == ".prefab") {
+                                        if (!prefabFiles.Contains(fileInfo.FullName)) {
+                                            ConsoleU.WriteLine($"Prefab found inside prefab: {fileInfo.FullName}", ConsoleColor.Green);
+                                            prefabFiles.Add(fileInfo.FullName);
+                                        }
+                                    }
                                 }
                                 lastIndex = numGuidIndex + 1;
                             }
