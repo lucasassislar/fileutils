@@ -88,6 +88,8 @@ namespace FileUtils.Commands {
                 filesByGuid.Add(guid, file);
             }
 
+            int numSceneGuids = 0;
+
             for (int i = 0; i < sceneFiles.Count; i++) {
                 string strScene = sceneFiles[i];
 
@@ -106,6 +108,7 @@ namespace FileUtils.Commands {
                                 string guid = line.Substring(numGuidIndex + guidStr.Length, 32);
                                 if (!guidsToAdd.Contains(guid)) {
                                     guidsToAdd.Add(guid);
+                                    numSceneGuids++;
 
                                     FileInfo fileInfo;
                                     if (!filesByGuid.TryGetValue(guid, out fileInfo)) {
@@ -116,9 +119,11 @@ namespace FileUtils.Commands {
                                     string strNoExtension = Path.GetFileNameWithoutExtension(fileInfo.Name);
                                     string strExtension = Path.GetExtension(strNoExtension).ToLower();
                                     if (strExtension == ".prefab") {
-                                        if (!prefabFiles.Contains(fileInfo.FullName)) {
-                                            ConsoleU.WriteLine($"Prefab added: {fileInfo.FullName}", ConsoleColor.Green);
-                                            prefabFiles.Add(fileInfo.FullName);
+                                        string strPrefabFullPath = Path.Combine(Path.GetDirectoryName(fileInfo.FullName), strNoExtension);
+
+                                        if (!prefabFiles.Contains(strPrefabFullPath)) {
+                                            ConsoleU.WriteLine($"Prefab added: {strPrefabFullPath}", ConsoleColor.Green);
+                                            prefabFiles.Add(strPrefabFullPath);
                                         }
                                     }
                                 }
@@ -128,6 +133,9 @@ namespace FileUtils.Commands {
                     }
                 }
             }
+
+            int numPrefabGuids = 0;
+            int numPrefabInsidePrefab = 0;
 
             for (int i = 0; i < prefabFiles.Count; i++) {
                 string strScene = prefabFiles[i];
@@ -147,6 +155,7 @@ namespace FileUtils.Commands {
                                 string guid = line.Substring(numGuidIndex + guidStr.Length, 32);
                                 if (!guidsToAdd.Contains(guid)) {
                                     guidsToAdd.Add(guid);
+                                    numPrefabGuids++;
 
                                     FileInfo fileInfo;
                                     if (!filesByGuid.TryGetValue(guid, out fileInfo)) {
@@ -157,6 +166,7 @@ namespace FileUtils.Commands {
                                     string strExtension = Path.GetExtension(strNoExtension).ToLower();
                                     if (strExtension == ".prefab") {
                                         if (!prefabFiles.Contains(fileInfo.FullName)) {
+                                            numPrefabInsidePrefab++;
                                             ConsoleU.WriteLine($"Prefab found inside prefab: {fileInfo.FullName}", ConsoleColor.Green);
                                             prefabFiles.Add(fileInfo.FullName);
                                         }
@@ -225,6 +235,9 @@ namespace FileUtils.Commands {
 
             ConsoleU.WriteLine($"Total metas modified: {numModified}", ConsoleColor.Green);
             ConsoleU.WriteLine($"Total metas ignored: {numIgnored}", ConsoleColor.Yellow);
+            ConsoleU.WriteLine($"Total scenes guids: {numSceneGuids}", ConsoleColor.DarkGreen);
+            ConsoleU.WriteLine($"Total prefab guids: {numPrefabGuids}", ConsoleColor.DarkGreen);
+            ConsoleU.WriteLine($"Total prefab inside prefabs: {numPrefabInsidePrefab}", ConsoleColor.DarkGreen);
 
 
             return CommandFeedback.Success;
