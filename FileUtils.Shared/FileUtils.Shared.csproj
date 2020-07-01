@@ -50,9 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandFeedback.cs" />
+    <Compile Include="Commands\AddBundleToMetas.cs" />
+    <Compile Include="Commands\AddNamespaces.cs" />
     <Compile Include="Commands\AddToTxtBottom.cs" />
     <Compile Include="Commands\AddToTxtHeader.cs" />
     <Compile Include="Commands\ConvertAllToMp3.cs" />
+    <Compile Include="Commands\CreateBundleFromScenes.cs" />
     <Compile Include="Commands\CutAudioFile.cs" />
     <Compile Include="Commands\DelEmpty.cs" />
     <Compile Include="Commands\FixSpotifyM4A.cs" />
@@ -61,6 +64,8 @@
     <Compile Include="Commands\ListFiles.cs" />
     <Compile Include="Commands\ModVolume.cs" />
     <Compile Include="Commands\MoveFiles.cs" />
+    <Compile Include="Commands\RenameSimilar.cs" />
+    <Compile Include="Commands\RenameSimilarClasses.cs" />
     <Compile Include="Commands\WebServer.cs" />
     <Compile Include="ConsoleCommand.cs" />
     <Compile Include="ConsoleManager.cs" />

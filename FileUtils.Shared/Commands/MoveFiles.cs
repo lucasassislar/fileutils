@@ -18,10 +18,8 @@ namespace FileUtils.Commands {
         }
 
         private string command = "movefiles";
-        private string[] parameters = new string[]
-            {
-
-            };
+        private string[] parameters = new string[]{
+        };
 
         public override string[] Parameters { get { return parameters; } }
 
@@ -48,7 +46,7 @@ namespace FileUtils.Commands {
             return CommandFeedback.Success;
         }
 
-        private void RecursiveFolder(DirectoryInfo baseDir, DirectoryInfo dirInfo, 
+        private void RecursiveFolder(DirectoryInfo baseDir, DirectoryInfo dirInfo,
             string strDestiny, List<string> filters) {
 
             for (int x = 0; x < filters.Count; x++) {
