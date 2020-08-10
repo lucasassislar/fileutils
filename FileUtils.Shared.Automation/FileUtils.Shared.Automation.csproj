@@ -64,11 +64,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncHelpers.cs" />
+    <Compile Include="ColorAlgorithm.cs" />
     <Compile Include="Commands\MusicLight.cs" />
     <Compile Include="Commands\TurnOffLight.cs" />
     <Compile Include="Commands\TurnOnLight.cs" />
     <Compile Include="Commands\VideoLight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="YeelightVideo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

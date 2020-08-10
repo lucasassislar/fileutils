@@ -49,8 +49,8 @@ namespace FileUtils.Shared.Automation {
                     ret = await task();
                 } catch (Exception e) {
                     ConsoleU.WriteLine(e.Message, ConsoleColor.Red);
-                    //synch.InnerException = e;
-                    //throw;
+                    synch.InnerException = e;
+                    throw;
                 } finally {
                     synch.EndMessageLoop();
                 }

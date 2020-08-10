@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUtils.Console", "FileUt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUtils.Shared.Automation", "FileUtils.Shared.Automation\FileUtils.Shared.Automation.csproj", "{A1FA72D9-CC27-46E7-B2A1-F27814F34FF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ambipoor", "Ambipoor\Ambipoor.csproj", "{A0B2464B-5CF0-4A5A-A31A-10C93EDC3461}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,12 @@ Global
 		{A1FA72D9-CC27-46E7-B2A1-F27814F34FF4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A1FA72D9-CC27-46E7-B2A1-F27814F34FF4}.TestDebug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A1FA72D9-CC27-46E7-B2A1-F27814F34FF4}.TestDebug|Any CPU.Build.0 = Debug|Any CPU
+		{A0B2464B-5CF0-4A5A-A31A-10C93EDC3461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0B2464B-5CF0-4A5A-A31A-10C93EDC3461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0B2464B-5CF0-4A5A-A31A-10C93EDC3461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0B2464B-5CF0-4A5A-A31A-10C93EDC3461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0B2464B-5CF0-4A5A-A31A-10C93EDC3461}.TestDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0B2464B-5CF0-4A5A-A31A-10C93EDC3461}.TestDebug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
