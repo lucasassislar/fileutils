@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Nucleus;
 
 namespace FileUtils.Commands
 {
@@ -82,7 +83,7 @@ namespace FileUtils.Commands
 
             ConsoleU.WriteLine($"Changed { changed } files", Palette.Success);
             ConsoleU.WriteLine($"Failed to change { failed } files", failed == 0 ? Palette.Success : Palette.Error);
-            ConsoleU.ReadLine();
+            ConsoleS.ReadLine();
 
             return CommandFeedback.Success;
         }

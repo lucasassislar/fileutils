@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Nucleus;
 namespace FileUtils.Commands
 {
     public class FixSpotifyM4A : ConsoleCommand

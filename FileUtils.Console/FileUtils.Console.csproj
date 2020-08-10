@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FileUtils.Console</RootNamespace>
     <AssemblyName>fileutils</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,10 +51,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FileUtils.Shared.Automation\FileUtils.Shared.Automation.csproj">
+      <Project>{a1fa72d9-cc27-46e7-b2a1-f27814f34ff4}</Project>
+      <Name>FileUtils.Shared.Automation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FileUtils.Shared\FileUtils.Shared.csproj">
       <Project>{1e0429f7-97a5-4e71-81da-3d88c9557217}</Project>
       <Name>FileUtils.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

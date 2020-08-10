@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FileUtils.Shared.Automation;
 
 namespace FileUtils.Console {
     class Program {
@@ -15,11 +16,9 @@ namespace FileUtils.Console {
 
             if (args.Length > 0) {
                 console.ExecuteCommand(args);
-            } else {
-                console.Run();
             }
 
-            System.Console.ReadLine();
+            console.Run();
         }
     }
 }

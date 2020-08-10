@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Nucleus;
 
 namespace FileUtils.Commands {
     public class RenameSimilar : ConsoleCommand {

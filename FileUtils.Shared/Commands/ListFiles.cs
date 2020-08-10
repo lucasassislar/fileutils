@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Nucleus;
 
 namespace FileUtils.Commands {
     public class ListFiles : ConsoleCommand {
@@ -50,7 +51,7 @@ namespace FileUtils.Commands {
 
                 for (; ; )
                 {
-                    string command = ConsoleU.ReadLine();
+                    string command = ConsoleS.ReadLine();
                     bool exit = false;
                     switch (command) {
                         case "3dsmaximport": {

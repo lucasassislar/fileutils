@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace System
-{
-    public static class ConsoleU
-    {
+namespace System {
+    public static class ConsoleS {
         private static bool WaitingForInput;
 
-        public static string ReadLine()
-        {
+        public static string ReadLine() {
             WaitingForInput = true;
             Console.Write("> ");
             string line = Console.ReadLine();
@@ -18,10 +15,8 @@ namespace System
             return line;
         }
 
-        public static void WriteLine(string str, ConsoleColor color)
-        {
-            if (WaitingForInput)
-            {
+        public static void WriteLine(string str, ConsoleColor color) {
+            if (WaitingForInput) {
                 Console.SetCursorPosition(0, Console.CursorTop);
             }
 
@@ -31,10 +26,8 @@ namespace System
             Console.ForegroundColor = last;
         }
 
-        public static void WriteLine(string str, ConsoleColor color, params object[] format)
-        {
-            if (WaitingForInput)
-            {
+        public static void WriteLine(string str, ConsoleColor color, params object[] format) {
+            if (WaitingForInput) {
                 Console.SetCursorPosition(0, Console.CursorTop);
             }
 
