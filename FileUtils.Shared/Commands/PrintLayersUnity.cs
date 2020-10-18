@@ -1,4 +1,5 @@
-﻿using Nucleus.Platform.Windows;
+﻿using Nucleus.ConsoleEngine;
+using Nucleus.Platform.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -20,8 +21,6 @@ namespace FileUtils.Commands {
         }
 
         private string command = "printlayersunity";
-        private string[] parameters = new string[]{
-        };
 
         private string[] layers = new string[] {
             "Default",
@@ -54,8 +53,6 @@ namespace FileUtils.Commands {
             "LaserBullet",
             "Teacher",
         };
-
-        public override string[] Parameters { get { return parameters; } }
 
         public PrintLayersUnity(ConsoleManager manager)
             : base(manager) {

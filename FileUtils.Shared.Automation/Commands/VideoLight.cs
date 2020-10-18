@@ -1,18 +1,13 @@
 ﻿using ColorThiefDotNet;
-using FileUtils.Shared.Automation;
-using NAudio.Wave;
 using Nucleus;
+using Nucleus.ConsoleEngine;
 using Nucleus.Platform.Windows;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using YeelightAPI;
 using Color = System.Drawing.Color;
 
@@ -25,9 +20,6 @@ namespace FileUtils.Automation.Commands {
         }
 
         private string command = "lightvideo";
-        private string[] parameters = new string[] { };
-
-        public override string[] Parameters { get { return parameters; } }
 
         private Bitmap bmpScreen;
         private Bitmap bmpScreenSmall;

@@ -1,14 +1,8 @@
-﻿using FileUtils.Shared.Automation;
-using NAudio.Wave;
-using Nucleus;
+﻿using Nucleus;
+using Nucleus.ConsoleEngine;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using YeelightAPI;
 
 namespace FileUtils.Automation.Commands {
@@ -20,9 +14,6 @@ namespace FileUtils.Automation.Commands {
         }
 
         private string command = "lightmusic";
-        private string[] parameters = new string[] { };
-
-        public override string[] Parameters { get { return parameters; } }
 
         public MusicLight(ConsoleManager manager)
             : base(manager) {

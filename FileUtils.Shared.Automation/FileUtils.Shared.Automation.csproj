@@ -40,9 +40,6 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NucleusDotNet">
-      <HintPath>..\ThirdParty\nucleusdotnet\Nucleus.Gaming\Nucleus.Gaming\bin\Release\NucleusDotNet.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -63,13 +60,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AsyncHelpers.cs" />
     <Compile Include="ColorAlgorithm.cs" />
+    <Compile Include="ColorUtil.cs" />
+    <Compile Include="Color\KCluster.cs" />
+    <Compile Include="Color\KMeansClusteringCalculator.cs" />
     <Compile Include="Commands\MusicLight.cs" />
     <Compile Include="Commands\TurnOffLight.cs" />
     <Compile Include="Commands\TurnOnLight.cs" />
     <Compile Include="Commands\VideoLight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleColorTransforms.cs" />
     <Compile Include="YeelightVideo.cs" />
   </ItemGroup>
   <ItemGroup />
@@ -77,6 +77,14 @@
     <ProjectReference Include="..\FileUtils.Shared\FileUtils.Shared.csproj">
       <Project>{1e0429f7-97a5-4e71-81da-3d88c9557217}</Project>
       <Name>FileUtils.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdParty\nucleusdotnet\Nucleus.Gaming\Nucleus.Gaming\NucleusDotNet.NETFramework.csproj">
+      <Project>{223dbdae-e362-452c-9455-f518d002b154}</Project>
+      <Name>NucleusDotNet.NETFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdParty\nucleusdotnet\Nucleus.Gaming\NucleusDotNet.Windows\NucleusDotNet.Windows.NETFramework.csproj">
+      <Project>{43b5ca27-b2f1-45db-9103-47c8bbcef0dd}</Project>
+      <Name>NucleusDotNet.Windows.NETFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,13 +1,8 @@
-﻿using System;
+﻿using Nucleus.ConsoleEngine;
+using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FileUtils.Commands {
     public class JoinTXTs : ConsoleCommand {
@@ -18,12 +13,6 @@ namespace FileUtils.Commands {
         }
 
         private string command = "jointxt";
-        private string[] parameters = new string[]
-            {
-
-            };
-
-        public override string[] Parameters { get { return parameters; } }
 
         public JoinTXTs(ConsoleManager manager)
             : base(manager) {

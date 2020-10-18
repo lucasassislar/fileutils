@@ -1,4 +1,5 @@
 ﻿using Nucleus;
+using Nucleus.ConsoleEngine;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,12 +17,6 @@ namespace FileUtils.Commands {
         }
 
         private string command = "modvolume";
-        private string[] parameters = new string[]
-            {
-
-            };
-
-        public override string[] Parameters { get { return parameters; } }
 
         public ModVolume(ConsoleManager manager)
             : base(manager) {

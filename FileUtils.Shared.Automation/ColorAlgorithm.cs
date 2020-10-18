@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace FileUtils.Automation.Video {
     public enum ColorAlgorithm {
+        DominantColorThief,
         DominantColor,
         AverageColor,
-        DominantColorThief
+        DominantColorKMeans,
+        WeightedBrightestColor
     }
 }

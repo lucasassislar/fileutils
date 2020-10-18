@@ -1,12 +1,5 @@
-﻿using FileUtils.Shared.Automation;
-using Nucleus;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Nucleus;
+using Nucleus.ConsoleEngine;
 using YeelightAPI;
 
 namespace FileUtils.Automation.Commands {
@@ -18,9 +11,6 @@ namespace FileUtils.Automation.Commands {
         }
 
         private string command = "lighton";
-        private string[] parameters = new string[] { };
-
-        public override string[] Parameters { get { return parameters; } }
 
         public TurnOnLight(ConsoleManager manager)
             : base(manager) {

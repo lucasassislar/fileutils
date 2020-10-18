@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Nucleus;
+using Nucleus.ConsoleEngine;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-using Nucleus;
-namespace FileUtils.Commands
-{
+namespace FileUtils.Commands {
     public class FixSpotifyM4A : ConsoleCommand
     {
         public override string Command { get { return command; } }
@@ -20,12 +18,6 @@ namespace FileUtils.Commands
         }
 
         private string command = "fixspotifym4a";
-        private string[] parameters = new string[]
-            {
-
-            };
-
-        public override string[] Parameters { get { return parameters; } }
 
         public FixSpotifyM4A(ConsoleManager manager)
             : base(manager)

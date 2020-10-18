@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Nucleus.ConsoleEngine;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FileUtils.Commands {
     public class ConvertAllToMp3 : ConsoleCommand {
@@ -15,12 +14,6 @@ namespace FileUtils.Commands {
         }
 
         private string command = "convertalltomp3";
-        private string[] parameters = new string[]
-            {
-
-            };
-
-        public override string[] Parameters { get { return parameters; } }
 
         public ConvertAllToMp3(ConsoleManager manager)
             : base(manager) {

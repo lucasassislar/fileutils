@@ -59,6 +59,10 @@
       <Project>{1e0429f7-97a5-4e71-81da-3d88c9557217}</Project>
       <Name>FileUtils.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ThirdParty\nucleusdotnet\Nucleus.Gaming\Nucleus.Gaming\NucleusDotNet.NETFramework.csproj">
+      <Project>{223dbdae-e362-452c-9455-f518d002b154}</Project>
+      <Name>NucleusDotNet.NETFramework</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

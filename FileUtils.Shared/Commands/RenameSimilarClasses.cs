@@ -1,14 +1,9 @@
 ﻿using Nucleus;
+using Nucleus.ConsoleEngine;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FileUtils.Commands {
     public class RenameSimilarClasses : ConsoleCommand {
@@ -19,10 +14,6 @@ namespace FileUtils.Commands {
         }
 
         private string command = "renameclasses";
-        private string[] parameters = new string[]{
-        };
-
-        public override string[] Parameters { get { return parameters; } }
         private List<FileInfo> sourceFiles;
         private List<FileInfo> destFiles;
         private List<FileInfo> updatedFiles;

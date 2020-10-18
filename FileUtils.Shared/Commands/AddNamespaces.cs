@@ -1,4 +1,5 @@
 ﻿using Nucleus;
+using Nucleus.ConsoleEngine;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -19,10 +20,6 @@ namespace FileUtils.Commands {
         }
 
         private string command = "addnamespace";
-        private string[] parameters = new string[]{
-        };
-
-        public override string[] Parameters { get { return parameters; } }
         private List<FileInfo> sourceFiles;
         private List<FileInfo> destFiles;
         private List<FileInfo> updatedFiles;

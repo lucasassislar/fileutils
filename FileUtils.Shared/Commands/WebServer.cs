@@ -1,4 +1,5 @@
 ﻿using Nucleus;
+using Nucleus.ConsoleEngine;
 using Nucleus.Web;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,6 @@ namespace FileUtils.Commands {
         }
 
         private string command = "web";
-        private string[] parameters = new string[]
-            {
-
-            };
-
-        public override string[] Parameters { get { return parameters; } }
 
         private HttpServer httpServer;
 

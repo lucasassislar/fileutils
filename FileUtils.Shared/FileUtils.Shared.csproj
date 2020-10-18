@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FileUtils.Shared</RootNamespace>
     <AssemblyName>FileUtils.Shared</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,10 +35,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ThirdParty\nucleusdotnet\Nucleus.Gaming\Nucleus.Gaming\bin\Release\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NucleusDotNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ThirdParty\nucleusdotnet\Nucleus.Gaming\Nucleus.Gaming\bin\Release\NucleusDotNet.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -50,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandFeedback.cs" />
     <Compile Include="Commands\AddBundleToMetas.cs" />
     <Compile Include="Commands\AddNamespaces.cs" />
     <Compile Include="Commands\AddToTxtBottom.cs" />
@@ -69,14 +65,22 @@
     <Compile Include="Commands\RenameSimilar.cs" />
     <Compile Include="Commands\RenameSimilarClasses.cs" />
     <Compile Include="Commands\WebServer.cs" />
-    <Compile Include="ConsoleCommand.cs" />
-    <Compile Include="ConsoleManager.cs" />
     <Compile Include="FileUtilsGlobals.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\CmdUtil.cs" />
     <Compile Include="Utils\ConsoleU.cs" />
     <Compile Include="Utils\FileUtil.cs" />
     <Compile Include="Utils\Palette.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ThirdParty\nucleusdotnet\Nucleus.Gaming\Nucleus.Gaming\NucleusDotNet.NETFramework.csproj">
+      <Project>{223dbdae-e362-452c-9455-f518d002b154}</Project>
+      <Name>NucleusDotNet.NETFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ThirdParty\nucleusdotnet\Nucleus.Gaming\NucleusDotNet.Windows\NucleusDotNet.Windows.NETFramework.csproj">
+      <Project>{43b5ca27-b2f1-45db-9103-47c8bbcef0dd}</Project>
+      <Name>NucleusDotNet.Windows.NETFramework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

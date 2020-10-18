@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Nucleus;
+using Nucleus.ConsoleEngine;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Nucleus;
 
 namespace FileUtils.Commands {
     public class ListFiles : ConsoleCommand {
@@ -19,12 +17,6 @@ namespace FileUtils.Commands {
         }
 
         private string command = "listfiles";
-        private string[] parameters = new string[]
-            {
-
-            };
-
-        public override string[] Parameters { get { return parameters; } }
 
         public ListFiles(ConsoleManager manager)
             : base(manager) {

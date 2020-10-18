@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Nucleus;
+using Nucleus.ConsoleEngine;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Nucleus;
 
 namespace FileUtils.Commands {
     public class DeleteEmptyFolders : ConsoleCommand {
@@ -15,12 +13,6 @@ namespace FileUtils.Commands {
         }
 
         private string command = "delempty";
-        private string[] parameters = new string[]
-            {
-
-            };
-
-        public override string[] Parameters { get { return parameters; } }
 
         public DeleteEmptyFolders(ConsoleManager manager)
             : base(manager) {

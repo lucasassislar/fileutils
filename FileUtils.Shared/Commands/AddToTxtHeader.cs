@@ -1,53 +1,38 @@
-﻿using System;
+﻿using Nucleus;
+using Nucleus.ConsoleEngine;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Nucleus;
 
-namespace FileUtils.Commands
-{
-    public class AddToTxtHeader : ConsoleCommand
-    {
+namespace FileUtils.Commands {
+    public class AddToTxtHeader : ConsoleCommand {
         public override string Command { get { return command; } }
 
-        public override string Help
-        {
+        public override string Help {
             get { return "Writes text to a a text file header"; }
         }
 
         private string command = "addtotxtheader";
-        private string[] parameters = new string[]
-            {
-
-            };
-
-        public override string[] Parameters { get { return parameters; } }
 
         public AddToTxtHeader(ConsoleManager manager)
-            : base(manager)
-        {
+            : base(manager) {
 
         }
 
-        public override CommandFeedback Execute(string[] args)
-        {
-            if (args.Length == 1)
-            {
+        public override CommandFeedback Execute(string[] args) {
+            if (args.Length == 1) {
                 return CommandFeedback.WrongNumberOfArguments;
             }
 
             string target = args[1];
             string line = args[2];
             string searchParams = args[3];
-            while (line.Contains("\\n"))
-            {
+            while (line.Contains("\\n")) {
                 line = line.Replace("\\n", "\n");
             }
 
-            if (!Directory.Exists(target))
-            {
+            if (!Directory.Exists(target)) {
                 return CommandFeedback.Error;
             }
 
@@ -60,21 +45,16 @@ namespace FileUtils.Commands
 
             int changed = 0;
             int failed = 0;
-            if (consoleManager.InputYesNo())
-            {
-                for (int i = 0; i < files.Length; i++)
-                {
+            if (consoleManager.InputYesNo()) {
+                for (int i = 0; i < files.Length; i++) {
                     FileInfo file = files[i];
-                    try
-                    {
+                    try {
                         string readAll = File.ReadAllText(file.FullName);
                         readAll = line + readAll;
                         File.Delete(file.FullName);
                         File.WriteAllText(file.FullName, readAll);
                         changed++;
-                    }
-                    catch
-                    {
+                    } catch {
                         ConsoleU.WriteLine($"Failed writing to { file.Name } ", Palette.Error);
                         failed++;
                     }
@@ -88,24 +68,18 @@ namespace FileUtils.Commands
             return CommandFeedback.Success;
         }
 
-        public static bool IsDirectoryEmpty(string path)
-        {
+        public static bool IsDirectoryEmpty(string path) {
             return !Directory.EnumerateFileSystemEntries(path).Any();
         }
 
-        private static void RecursiveSearch(DirectoryInfo parent, List<string> folders)
-        {
+        private static void RecursiveSearch(DirectoryInfo parent, List<string> folders) {
             DirectoryInfo[] dirs = parent.GetDirectories();
-            for (int i = 0; i < dirs.Length; i++)
-            {
+            for (int i = 0; i < dirs.Length; i++) {
                 DirectoryInfo dir = dirs[i];
 
-                if (IsDirectoryEmpty(dir.FullName))
-                {
+                if (IsDirectoryEmpty(dir.FullName)) {
                     folders.Add(dir.FullName);
-                }
-                else
-                {
+                } else {
                     RecursiveSearch(dir, folders);
                 }
             }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nucleus.ConsoleEngine;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
@@ -18,10 +19,6 @@ namespace FileUtils.Commands {
         }
 
         private string command = "movefiles";
-        private string[] parameters = new string[]{
-        };
-
-        public override string[] Parameters { get { return parameters; } }
 
         public MoveFiles(ConsoleManager manager)
             : base(manager) {

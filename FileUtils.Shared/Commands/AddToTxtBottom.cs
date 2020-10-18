@@ -1,14 +1,11 @@
-﻿using System;
+﻿using Nucleus;
+using Nucleus.ConsoleEngine;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Nucleus;
-using Nucleus;
 
-namespace FileUtils.Commands
-{
+namespace FileUtils.Commands {
     /// <summary>
     /// Writes text
     /// </summary>
@@ -22,12 +19,6 @@ namespace FileUtils.Commands
         }
 
         private string command = "addtotxtbottom";
-        private string[] parameters = new string[]
-            {
-
-            };
-
-        public override string[] Parameters { get { return parameters; } }
 
         public AddToTxtBottom(ConsoleManager manager)
             : base(manager)
